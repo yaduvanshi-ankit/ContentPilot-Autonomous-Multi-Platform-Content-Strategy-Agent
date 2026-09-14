@@ -1,0 +1,9 @@
+import { useState } from 'react';
+
+const platforms = ['Instagram', 'YouTube', 'LinkedIn'];
+export default function BriefModal({ onClose, onGenerate }) {
+  const [brief, setBrief] = useState(''); const [goal, setGoal] = useState('Grow audience'); const [selected, setSelected] = useState(platforms); const [busy, setBusy] = useState(false);
+  const toggle = platform => setSelected(value => value.includes(platform) ? value.filter(item => item !== platform) : [...value, platform]);
+  const submit = async (event) => { event.preventDefault(); if (!brief.trim() || !selected.length) return; setBusy(true); try { await onGenerate({ brief, goal, platforms: selected }); } finally { setBusy(false); } };
+  return <div className="modal-backdrop"><form className="brief-modal" onSubmit={submit}><button type="button" className="close-modal" onClick={onClose}>×</button><span className="eyebrow">NEW CONTENT BRIEF</span><h2>Give your AI team a direction.</h2><p>ContentPilot will research trends, plan a strategy, and create ready-to-review posts.</p><label>What do you want to create about?<textarea value={brief} onChange={e => setBrief(e.target.value)} autoFocus placeholder="e.g. Productive study habits for engineering students" required /></label><label>Primary goal</label><div className="goal-options">{['Grow audience', 'Drive engagement', 'Build authority'].map(item => <button type="button" className={goal === item ? 'selected' : ''} onClick={() => setGoal(item)} key={item}>{item}</button>)}</div><label>Platforms</label><div className="platform-options">{platforms.map(item => <button type="button" className={selected.includes(item) ? 'selected' : ''} onClick={() => toggle(item)} key={item}>{selected.includes(item) ? '✓ ' : ''}{item}</button>)}</div><button className="primary-button wide" disabled={busy}>{busy ? 'AI team is working…' : 'Launch AI team'} <b>→</b></button></form></div>;
+}

@@ -1,0 +1,1 @@
+export default function AgentTrace({ trace = [] }) { return <div className="trace">{trace.map((step, index) => <div className="trace-step" key={`${step.agent}-${index}`}><span>{step.status === 'complete' ? '✓' : '…'}</span><div><b>{step.agent}</b><small>{step.action}</small></div><em>{step.status}</em></div>)}</div>; }

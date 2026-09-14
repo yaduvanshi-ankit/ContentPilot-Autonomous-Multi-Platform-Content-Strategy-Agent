@@ -1,0 +1,15 @@
+{
+  "name": "contentpilot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Autonomous multi-platform content strategy agent",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "client": "npm run dev --prefix client",
+    "server": "npm run dev --prefix server",
+    "build": "npm run build --prefix client"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

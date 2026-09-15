@@ -1,4 +1,4 @@
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms)) ;
 const tokens = (brief) => brief.toLowerCase().split(/\W+/).filter(Boolean).slice(0, 5);
 
 export async function runContentPipeline({ brief, goal = 'Grow audience', platforms = ['Instagram', 'YouTube', 'LinkedIn'], brand }) {
